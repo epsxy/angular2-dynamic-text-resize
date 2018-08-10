@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Options } from 'ng5-slider';
+import { INPUT_VALUE_ATTR, SLIDER_VALUE_ATTR } from 'src/model/const';
 
 @Component({
   selector: 'app-root',
@@ -20,8 +21,8 @@ export class AppComponent implements OnInit, OnDestroy {
   private obs: MutationObserver;
 
   ngOnInit(): void {
-    const inputStoredValue = localStorage.getItem('input-value');
-    const sliderStoredValue = localStorage.getItem('slider-value');
+    const inputStoredValue = localStorage.getItem(INPUT_VALUE_ATTR);
+    const sliderStoredValue = localStorage.getItem(SLIDER_VALUE_ATTR);
     if (inputStoredValue != null) {
       this.inputValue = inputStoredValue;
     }
@@ -85,16 +86,16 @@ export class AppComponent implements OnInit, OnDestroy {
   reset(): void {
     this.inputValue = '';
     this.sliderValue = 100;
-    localStorage.setItem('input-value', this.inputValue);
-    localStorage.setItem('slider-value', this.sliderValue.toString());
+    localStorage.setItem(INPUT_VALUE_ATTR, this.inputValue);
+    localStorage.setItem(SLIDER_VALUE_ATTR, this.sliderValue.toString());
   }
 
   onInputChange(event: any) {
     this.inputValue = event.target.value;
-    localStorage.setItem('input-value', this.inputValue);
+    localStorage.setItem(INPUT_VALUE_ATTR, this.inputValue);
   }
 
   onSliderChange(event: any) {
-    localStorage.setItem('slider-value', this.sliderValue.toString());
+    localStorage.setItem(SLIDER_VALUE_ATTR, this.sliderValue.toString());
   }
 }
