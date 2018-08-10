@@ -55,8 +55,8 @@ export class AppComponent implements OnInit, OnDestroy {
     console.log('containerWidth: ' + containerWidth + ', containerHeight: ' + containerHeight);
 
     if (textHeight === 0 || textWidth === 0) {
-      console.log('Returning default value: 1');
-      return 1;
+      console.log('Returning default value: 10');
+      return 10;
     }
 
     const maxFontHeight = Math.floor((this.fontSize * containerHeight) / textHeight);
