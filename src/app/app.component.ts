@@ -53,10 +53,10 @@ export class AppComponent implements OnInit, OnDestroy {
     console.log('-- compute max font --');
     const outputContainer = document.querySelector(selector) as HTMLElement;
     const textContainer = document.querySelector(selector + ' > p ') as HTMLElement;
-    const textWidth = textContainer.offsetWidth;
-    const textHeight = textContainer.offsetHeight;
-    const containerWidth = outputContainer.offsetWidth;
-    const containerHeight = outputContainer.offsetHeight;
+    const textWidth = textContainer.clientWidth;
+    const textHeight = textContainer.clientHeight;
+    const containerWidth = outputContainer.clientWidth;
+    const containerHeight = outputContainer.clientHeight;
 
     console.log('textWidth: ' + textWidth + ', textHeight: ' + textHeight);
     console.log('containerWidth: ' + containerWidth + ', containerHeight: ' + containerHeight);
