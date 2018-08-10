@@ -1,27 +1,69 @@
-# AngularUiTestApp
+# Angular2-Playground
+
+## Prerequisites & dependencies
+
+```
+Docker
+npm >= 6.0
+@angular/cli >= 6.1.2
+````
+
+## Download and install
+
+- Clone this repo: `git clone ${THIS_REPO}`
+- Install dependencies: `cd ${THIS_REPO} && npm install`
+- Build docker image: `docker build --tag ${DOCKER_TAG} .`
+- Check docker image has been correctly installed: 
+```
+> docker images | grep ${DOCKER_TAG} | wc -l`
+> 1
+```
+
+## Run on host
+
+```
+> cd ${REPO_PATH}
+> ng serve --open
+```
+
+## Run on docker
+
+```
+host> cd ${REPO_PATH}
+host> docker run -it --volume=$(pwd):/usr/src/app --publish 4200:4200 angular bash
+docker> ng serve --host=0.0.0.0
+```
+
+App will be available in host at `localhost:4200`.
+
+## Tests
+
+Tests currently does not work in the docker container. 
+
+### Unit tests
+
+Unit tests uses [Karma](https://karma-runner.github.io).
+
+```
+> cd ${REPO_PATH}
+> ng test --watch=false
+```
+
+Removing `--watch=false` will open a browser tab with details about the tests.
+
+### End-to-end tests
+
+End-to-end tests uses [Protractor](http://www.protractortest.org/).
+
+```
+> cd ${REPO_PATH}
+> ng e2e
+```
+
+## MISC
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.2.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
+### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
