@@ -1,8 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    {{pageTitle}}
-  </h1>
+<div class="title-container">
+  <h1>{{pageTitle}}</h1>
 </div>
 <div class="input-container">
   <input (keyup)="onInputChange($event)" placeholder="Write something" [value]="inputValue">
@@ -12,6 +10,6 @@
   <p class="output-text-container" [style.font-size.px]="fontSize">{{inputValue}}</p>
 </div>
 <div class="actions">
-  <button (click)="computeStyle()">Compute style</button>
-  <button (click)="reset()">Reset</button>
+  <button (click)="computeStyle()" class="primary">Compute style</button>
+  <button (click)="reset()" class="danger">Reset</button>
 </div>

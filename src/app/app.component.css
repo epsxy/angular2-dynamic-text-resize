@@ -2,9 +2,14 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.title-container h1 {
+    text-align: center; 
+    font-weight: 100;
+}
+
+/* TODO: Improve input design */
 .input-container {
-    margin: 1em;
-    background-color: red;
+    /* margin: 1em; */
 }
 
 .input-container > input {
@@ -42,7 +47,6 @@
 
 .actions button {
     margin: 1em;
-    background: #5851ff;
     color: #fff;
     transition: all .15s ease;
     text-decoration: none;
@@ -61,4 +65,12 @@
 button:hover {
     transform: translateY(1px);
     box-shadow: 0 4px 6px rgba(0,0,0,.12), 0 1px 3px rgba(0,0,0,.08);
+}
+
+button.primary {
+    background: #6200ee;
+}
+
+button.danger {
+    background: #c51162;
 }
