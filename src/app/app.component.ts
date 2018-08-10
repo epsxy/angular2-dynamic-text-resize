@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Options } from 'ng5-slider';
 
 @Component({
@@ -35,6 +35,13 @@ export class AppComponent implements OnInit, OnDestroy {
     });
     const node = document.querySelector('.output-container');
     this.obs.observe(node, { characterData: true, attributes: true, childList: false, subtree: true });
+  }
+
+  // --- RESIZE EVENT LISTENER --- //
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    console.log('Window has been resized');
+    this.fontSize = this.computeMaxFont('.output-container');
   }
 
   ngOnDestroy(): void {
