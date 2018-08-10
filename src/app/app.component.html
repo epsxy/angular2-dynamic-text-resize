@@ -11,4 +11,7 @@
 <div class="output" class="output-container" [style.width]="getOutputWidth()">
   <p class="output-text-container" [style.font-size.px]="fontSize">{{inputValue}}</p>
 </div>
-<button (click)="computeStyle()">Compute style</button>
+<div class="actions">
+  <button (click)="computeStyle()">Compute style</button>
+  <button (click)="reset()">Reset</button>
+</div>

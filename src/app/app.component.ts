@@ -84,6 +84,13 @@ export class AppComponent implements OnInit, OnDestroy {
     return this.sliderValue + '%';
   }
 
+  reset(): void {
+    this.inputValue = '';
+    this.sliderValue = 100;
+    localStorage.setItem('input-value', this.inputValue);
+    localStorage.setItem('slider-value', this.sliderValue.toString());
+  }
+
   onInputChange(event: any) {
     this.inputValue = event.target.value;
     localStorage.setItem('input-value', this.inputValue);
