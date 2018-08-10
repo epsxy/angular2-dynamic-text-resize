@@ -61,10 +61,12 @@ export class AppComponent implements OnInit, OnDestroy {
     console.log('textWidth: ' + textWidth + ', textHeight: ' + textHeight);
     console.log('containerWidth: ' + containerWidth + ', containerHeight: ' + containerHeight);
 
+    // ----- FIXME INFINITE LOOP ----- //
     if (textHeight === 0 || textWidth === 0) {
       console.log('Returning default value: 10');
       return 10;
     }
+    // -----------------------------------------
 
     const maxFontHeight = Math.floor((this.fontSize * containerHeight) / textHeight);
     const maxFontWidth = Math.floor((this.fontSize * containerWidth) / textWidth);
@@ -75,17 +77,6 @@ export class AppComponent implements OnInit, OnDestroy {
   computeStyle() {
     this.fontSize = this.computeMaxFont('.output-container');
   }
-
-  // --- ISSUE VIEW NOT SYNC WITH DATA BOUND --- //
-  // --- DO NOT USE THAT --- //
-
-  // ngAfterViewInit() {
-  //   console.log('view init');
-  // }
-
-  // ngAfterViewChecked() {
-
-  // }
 
   getOutputWidth() {
     return this.sliderValue + '%';
