@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Options } from 'ng5-slider';
 
 @Component({
@@ -7,7 +7,7 @@ import { Options } from 'ng5-slider';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   pageTitle = 'Angular 2 – Stretched Text Box';
   fontSize = 45;
   inputValue = '';
@@ -17,9 +17,9 @@ export class AppComponent implements OnInit {
     ceil: 100,
     minLimit: 1
   };
+  private obs: MutationObserver;
 
-  ngOnInit() {
-    console.log('----- init -----');
+  ngOnInit(): void {
     const inputStoredValue = localStorage.getItem('input-value');
     const sliderStoredValue = localStorage.getItem('slider-value');
     if (inputStoredValue != null) {
@@ -28,6 +28,17 @@ export class AppComponent implements OnInit {
     if (sliderStoredValue != null && !isNaN(parseInt(sliderStoredValue, 10))) {
       this.sliderValue = parseInt(sliderStoredValue, 10);
     }
+    // --- DOM CHANGES MUTATION OBSERVER --- //
+    this.obs = new MutationObserver((mutation) => {
+      console.log(mutation);
+      this.fontSize = this.computeMaxFont('.output-container');
+    });
+    const node = document.querySelector('.output-container');
+    this.obs.observe(node, { characterData: true, attributes: true, childList: false, subtree: true });
+  }
+
+  ngOnDestroy(): void {
+    this.obs.disconnect();
   }
 
   // TODO: Handle Corner cases where width = 0!
