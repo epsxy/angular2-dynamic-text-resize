@@ -32,3 +32,33 @@
     font-stretch: expanded;
     /*line-height: 50px;*/
 }
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.actions button {
+    margin: 1em;
+    background: #5851ff;
+    color: #fff;
+    transition: all .15s ease;
+    text-decoration: none;
+    border: none;
+    outline: 0;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 16px 20px;
+    border-radius: 2px;
+    letter-spacing: .04em;
+    box-shadow: 0 8px 16px rgba(0,0,0,.1), 0 3px 6px rgba(0,0,0,.08);
+    cursor: pointer;
+}
+
+button:hover {
+    transform: translateY(1px);
+    box-shadow: 0 4px 6px rgba(0,0,0,.12), 0 1px 3px rgba(0,0,0,.08);
+}
