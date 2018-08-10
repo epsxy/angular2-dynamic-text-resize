@@ -64,8 +64,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // ----- FIXME INFINITE LOOP ----- //
     if (textHeight === 0 || textWidth === 0) {
-      console.log('Returning default value: 10');
-      return 10;
+      console.log('Returning default value: 1');
+      this.inputValue = '';
+      localStorage.setItem(INPUT_VALUE_ATTR, this.inputValue);
+      return 20;
     }
     // -----------------------------------------
 
