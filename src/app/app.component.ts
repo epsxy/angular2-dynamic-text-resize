@@ -51,12 +51,17 @@ export class AppComponent implements OnInit, OnDestroy {
     const containerWidth = outputContainer.offsetWidth;
     const containerHeight = outputContainer.offsetHeight;
 
-    // console.log('textWidth: ' + textWidth + ', textHeight: ' + textHeight);
-    // console.log('containerWidth: ' + containerWidth + ', containerHeight: ' + containerHeight);
+    console.log('textWidth: ' + textWidth + ', textHeight: ' + textHeight);
+    console.log('containerWidth: ' + containerWidth + ', containerHeight: ' + containerHeight);
+
+    if (textHeight === 0 || textWidth === 0) {
+      console.log('Returning default value: 1');
+      return 1;
+    }
 
     const maxFontHeight = Math.floor((this.fontSize * containerHeight) / textHeight);
     const maxFontWidth = Math.floor((this.fontSize * containerWidth) / textWidth);
-    // console.log('maxHeight: ' + maxFontHeight + ', maxWidth: ' + maxFontWidth);
+    console.log('maxHeight: ' + maxFontHeight + ', maxWidth: ' + maxFontWidth);
     return Math.min(maxFontHeight, maxFontWidth);
   }
 
