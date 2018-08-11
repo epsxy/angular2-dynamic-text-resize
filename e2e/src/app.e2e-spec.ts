@@ -10,7 +10,7 @@ describe('Tests for Angular2 Playground App', () => {
     page = new AppPage();
   });
 
-  afterEach(function() {
+  afterEach(() => {
     browser.executeScript('window.sessionStorage.clear();');
     browser.executeScript('window.localStorage.clear();');
   });
@@ -38,7 +38,7 @@ describe('Tests for Angular2 Playground App', () => {
     expect(page.getInputText()).toEqual('');
     expect(page.getOutputText()).toEqual('');
 
-    page.setInputText('This is the text').then(function() {
+    page.setInputText('This is the text').then(() => {
       expect(page.getInputText()).toEqual('This is the text');
       expect(page.getOutputText()).toEqual('This is the text');
       page.clickResetButton().then(() => {
@@ -53,24 +53,22 @@ describe('Tests for Angular2 Playground App', () => {
     expect(page.getInputText()).toEqual('');
     expect(page.getOutputText()).toEqual('');
 
-    page.setInputText('This is the text').then(function() {
+    page.setInputText('This is the text').then(() => {
       expect(page.getOutputText()).toEqual('This is the text');
-      page.navigateTo().then(function() {
+      page.navigateTo().then(() => {
         expect(page.getInputText()).toEqual('This is the text');
         expect(page.getOutputText()).toEqual('This is the text');
       });
     });
   });
 
-  it('should be able to set a very long long text that fits', () => {
+  it('should be able to set a very long text that fits', () => {
     page.navigateTo();
     expect(page.getInputText()).toEqual('');
     expect(page.getOutputText()).toEqual('');
-
-    const veryLongText = 'This is the very very very very very very very text that does not fit';
-    page.setInputText(veryLongText).then(function() {
-      expect(page.getOutputText()).toEqual(veryLongText);
-
+    page.setInputText('This is the long long long long long text').then(() => {
+      expect(page.getInputText()).toEqual('This is the long long long long long text');
+      expect(page.getOutputText()).toEqual('This is the long long long long long text');
       page.checkThatTextFits();
     });
   });
@@ -80,9 +78,12 @@ describe('Tests for Angular2 Playground App', () => {
     expect(page.getInputText()).toEqual('');
     expect(page.getOutputText()).toEqual('');
 
-    page.setInputText('This is the text quite long but not too much').then(function() {
+    page.setInputText('This is the text').then(() => {
+      expect(page.getOutputText()).toEqual('This is the text');
       page.checkThatTextFits();
-      browser.driver.manage().window().setSize(300, 500).then(() => {
+      browser.driver.manage().window().setSize(50, 500).then(() => {
+        expect(page.getInputText()).toEqual('This is the text');
+        expect(page.getOutputText()).toEqual('This is the text');
         page.checkThatTextFits();
       });
     });
