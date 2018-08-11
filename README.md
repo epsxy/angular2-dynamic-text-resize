@@ -60,8 +60,9 @@ Only `lint` and `unit test` will be executed.
 npm run docker:test
 ```
 
-## FIXME
+## ISSUES
 
+- Issue for lower bound. When the text is big enough, or the output box is small enough, new font size could not be computed. As we are considering integer font sizes, when a 1px sized text does not fit in the container, the new computed font needs to be 0px. Which is not suitable for this app. When this situation happens, the data is reset in the app: input is cleared and slider value returns to 100%.
 - End-to-end tests in Docker
 - End-to-end tests fails only in Travis. Output element height is 35 instead of 50. But they do not fail locally
 
