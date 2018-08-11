@@ -12,6 +12,10 @@
     /* margin: 1em; */
 }
 
+.slider-container {
+    margin-top: 1em;
+}
+
 .input-container > input {
     margin: 0;
     width: 100%;
@@ -45,7 +49,7 @@
     margin-top: 1em;
 }
 
-.actions button {
+.actions-container button {
     margin: 1em;
     color: #fff;
     transition: all .15s ease;
