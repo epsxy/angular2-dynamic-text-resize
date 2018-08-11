@@ -18,7 +18,7 @@ describe('Tests for Angular2 Playground App', () => {
   it('should display page title', () => {
     page.navigateTo();
 
-    expect(page.getParagraphText()).toEqual('Angular 2 – Stretched Text Box');
+    expect(page.getParagraphText()).toEqual('Angular 2 – Dynamic Text Resize');
   });
 
   it('should be able to set text', () => {

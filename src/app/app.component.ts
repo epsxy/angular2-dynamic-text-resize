@@ -9,7 +9,7 @@ import { INPUT_VALUE_ATTR, SLIDER_VALUE_ATTR } from 'src/model/const';
 })
 
 export class AppComponent implements OnInit, OnDestroy {
-  pageTitle = 'Angular 2 – Stretched Text Box';
+  pageTitle = 'Angular 2 – Dynamic Text Resize';
   fontSize = 20;
   inputValue = '';
   sliderValue = 100;

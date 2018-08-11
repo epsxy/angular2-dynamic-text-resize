@@ -91,7 +91,7 @@ describe('AppComponent', () => {
     );
 
     expect(titleElement.textContent).toContain(
-      'Angular 2 – Stretched Text Box'
+      'Angular 2 – Dynamic Text Resize'
     );
     expect(inputContainer.childElementCount).toEqual(1);
     expect(inputContainer.childElementCount).toEqual(1);
