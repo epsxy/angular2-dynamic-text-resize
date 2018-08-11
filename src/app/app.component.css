@@ -42,7 +42,7 @@
     margin: 0;
 }
 
-.actions {
+.actions-container {
     display: flex;
     align-items: center;
     justify-content: center;
