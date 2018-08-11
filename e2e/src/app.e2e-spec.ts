@@ -1,7 +1,9 @@
-import { AppPage } from './app.po';
-import { element, by, $, ElementFinder, browser } from 'protractor';
+import { $, browser, ElementFinder } from 'protractor';
+import { protractor } from 'protractor/built/ptor';
 
-describe('workspace-project App', () => {
+import { AppPage } from './app.po';
+
+describe('Tests for Angular2 Playground App', () => {
   let page: AppPage;
 
   beforeEach(() => {
@@ -18,69 +20,71 @@ describe('workspace-project App', () => {
 
     expect(page.getParagraphText()).toEqual('Angular 2 – Stretched Text Box');
   });
+
   it('should be able to set text', () => {
     page.navigateTo();
     expect(page.getInputText()).toEqual('');
     expect(page.getOutputText()).toEqual('');
 
-    expect($('.text-input')).not.toBeNull();
-
-    const inputElement: ElementFinder = $('.text-input');
-    const outputElement: ElementFinder = $('.output-text-container');
-    inputElement.sendKeys('This is the text').then(function() {
-      expect(inputElement.getAttribute('value')).toEqual('This is the text');
-      expect(outputElement.getText()).toEqual('This is the text');
+    page.setInputText('This is the text').then(() => {
+      expect(page.getOutputContainerClientHeight()).toEqual('50');
+      expect(page.getInputText()).toEqual('This is the text');
+      expect(page.getOutputText()).toEqual('This is the text');
     });
   });
-  it('should be able to set a very long long text that fits', () => {
-    page.navigateTo();
-    expect(page.getInputText()).toEqual('');
-    expect(page.getOutputText()).toEqual('');
 
-    expect($('.text-input')).not.toBeNull();
-
-    const inputElement: ElementFinder = $('.text-input');
-    const outputElementContainer: ElementFinder = $('.output-container');
-    const outputTextElement: ElementFinder = $('.output-text-container');
-    const veryLongText = 'This is the very very very very very very very text that does not fit';
-    inputElement.sendKeys(veryLongText).then(function() {
-      expect(outputTextElement.getText()).toEqual(veryLongText);
-      // FIXME: Add test on width/height
-    });
-  });
   it('should be able to reset the page', () => {
     page.navigateTo();
     expect(page.getInputText()).toEqual('');
     expect(page.getOutputText()).toEqual('');
 
-    expect($('.text-input')).not.toBeNull();
-
-    const inputElement: ElementFinder = $('.text-input');
-    const outputTextElement: ElementFinder = $('.output-text-container');
-    inputElement.sendKeys('This is the text').then(function() {
-      expect(outputTextElement.getText()).toEqual('This is the text');
-      $('button.reset').click().then(function() {
-        expect(inputElement.getText()).toEqual('');
-        expect(outputTextElement.getText()).toEqual('');
+    page.setInputText('This is the text').then(function() {
+      expect(page.getInputText()).toEqual('This is the text');
+      expect(page.getOutputText()).toEqual('This is the text');
+      page.clickResetButton().then(() => {
+        expect(page.getInputText()).toEqual('');
+        expect(page.getOutputText()).toEqual('');
       });
     });
   });
-  // it('should save input info in localstorage and persist after page refresh', () => {
-  //   page.navigateTo();
-  //   expect(page.getInputText()).toEqual('');
-  //   expect(page.getOutputText()).toEqual('');
 
-  //   expect($('.text-input')).not.toBeNull();
+  it('should save input info in localstorage and persist after page refresh', () => {
+    page.navigateTo();
+    expect(page.getInputText()).toEqual('');
+    expect(page.getOutputText()).toEqual('');
 
-  //   const inputElement: ElementFinder = $('.text-input');
-  //   const outputElementContainer: ElementFinder = $('.output-container');
-  //   const outputTextElement: ElementFinder = $('.output-text-container');
-  //   inputElement.sendKeys('This is the text').then(function() {
-  //     expect(outputTextElement.getText()).toEqual('This is the text');
-  //     page.navigateTo().then(function() {
-  //       expect($('.text-input').getText()).toEqual('This is the text');
-  //       expect($('.output-text-container').getText()).toEqual('This is the text');
-  //     });
-  //   });
-  // });
+    page.setInputText('This is the text').then(function() {
+      expect(page.getOutputText()).toEqual('This is the text');
+      page.navigateTo().then(function() {
+        expect(page.getInputText()).toEqual('This is the text');
+        expect(page.getOutputText()).toEqual('This is the text');
+      });
+    });
+  });
+
+  it('should be able to set a very long long text that fits', () => {
+    page.navigateTo();
+    expect(page.getInputText()).toEqual('');
+    expect(page.getOutputText()).toEqual('');
+
+    const veryLongText = 'This is the very very very very very very very text that does not fit';
+    page.setInputText(veryLongText).then(function() {
+      expect(page.getOutputText()).toEqual(veryLongText);
+
+      page.checkThatTextFits();
+    });
+  });
+
+  it('should refresh font size after page resize', () => {
+    page.navigateTo();
+    expect(page.getInputText()).toEqual('');
+    expect(page.getOutputText()).toEqual('');
+
+    page.setInputText('This is the text quite long but not too much').then(function() {
+      page.checkThatTextFits();
+      browser.driver.manage().window().setSize(300, 500).then(() => {
+        page.checkThatTextFits();
+      });
+    });
+  });
 });
