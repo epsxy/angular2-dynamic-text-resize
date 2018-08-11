@@ -1,4 +1,4 @@
-# Angular2-Playground
+# Angular2-Playground ![Travis build](https://api.travis-ci.com/epsxy/angular2-playground.svg?branch=master)
 
 ## Prerequisites & dependencies
 
