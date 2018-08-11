@@ -27,17 +27,23 @@ NB: The previous command will:
 - Run docker image
 - Run the angular app on host port 4242
 
-## Host install
+## Install
 
-- Clone the repo: `git clone $_{REPO_URL}`
+2 types of install are supported: 
+- Host: Clone the repository, install dependencies and run the application
+- Docker: Use provided scripts to build and run the project inside a docker container
+
+### Host
+
+- Clone the repo: `git clone https://github.com/epsxy/angular2-playground`
 - Install node dependencies: `npm install`
 - Run the project on your host: `npm run start`
 
 The application will be available at `localhost:4200`
 
-## Docker install
+### Docker
 
-- Clone the repo: `git clone $_{REPO_URL}`
+- Clone the repo: `git clone https://github.com/epsxy/angular2-playground`
 - Install node dependencies: `npm install`
 - Build docker container: `npm run docker:build`
 - Check docker install state: `npm run docker:check` should return 1
@@ -45,14 +51,18 @@ The application will be available at `localhost:4200`
 
 The application will be available at `localhost:4242`
 
-## Host tests
+## Tests
+
+Tests can be runned in your host or in a docker container.
+
+### Host
 
 - Lint: `npm run lint`
 - Unit tests: `npm run test`
 - End to end tests: `npm run e2e`
 
-## Docker tests
-*End to end tests does not work inside a docker container at the moment. Probably because of an issue with Headless Chrome browser and `.sendKey` method.*
+### Docker
+*End to end tests does not work inside a docker container at the moment. Probably because of an issue with Headless Chrome browser and `.sendKey()` method.*
 
 Only `lint` and `unit test` will be executed.
 
@@ -62,9 +72,14 @@ npm run docker:test
 
 ## ISSUES
 
-- Issue for lower bound. When the text is big enough, or the output box is small enough, new font size could not be computed. As we are considering integer font sizes, when a 1px sized text does not fit in the container, the new computed font needs to be 0px. Which is not suitable for this app. When this situation happens, the data is reset in the app: input is cleared and slider value returns to 100%.
-- End-to-end tests in Docker
-- End-to-end tests fails only in Travis. Output element height is 35 instead of 50. But they do not fail locally
+### Application
+
+- *Issue for lower bound text fitting*. When the text is big enough, or the output box is small enough, new font size could not be computed. As we are considering integer font sizes, when a 1px sized text does not fit in the container, the new computed font needs to be 0px. Which is not suitable for this app. When this situation happens, the data is reset in the app: input is cleared and slider value returns to 100%.
+
+### Integration
+
+- *End-to-end tests does not work in Docker.* Probably because of Headless Chrome browser.
+- *End-to-end tests does not work in Travis-CI.* Output element container height is thus always 35px instead of 50px. I do not know if it is related to Docker end-to-end tests issues.
 
 ## MISC
 
