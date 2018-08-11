@@ -31,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     // --- DOM CHANGES MUTATION OBSERVER --- //
     this.obs = new MutationObserver((mutation) => {
-      console.log(mutation);
+      // console.log(mutation);
       this.fontSize = this.computeMaxFont('.output-container');
     });
     const node = document.querySelector('.output-container');
@@ -41,7 +41,7 @@ export class AppComponent implements OnInit, OnDestroy {
   // --- RESIZE EVENT LISTENER --- //
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    console.log('Window has been resized');
+    // console.log('Window has been resized');
     this.fontSize = this.computeMaxFont('.output-container');
   }
 
@@ -51,7 +51,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   // TODO: Handle Corner cases where width = 0!
   computeMaxFont(selector: string): number {
-    console.log('-- compute max font --');
+    // console.log('-- compute max font --');
     const outputContainer = document.querySelector(selector) as HTMLElement;
     const textContainer = document.querySelector(selector + ' > p ') as HTMLElement;
     const textWidth = textContainer.clientWidth;
@@ -59,12 +59,12 @@ export class AppComponent implements OnInit, OnDestroy {
     const containerWidth = outputContainer.clientWidth;
     const containerHeight = outputContainer.clientHeight;
 
-    console.log('textWidth: ' + textWidth + ', textHeight: ' + textHeight);
-    console.log('containerWidth: ' + containerWidth + ', containerHeight: ' + containerHeight);
+    // console.log('textWidth: ' + textWidth + ', textHeight: ' + textHeight);
+    // console.log('containerWidth: ' + containerWidth + ', containerHeight: ' + containerHeight);
 
     // ----- FIXME INFINITE LOOP ----- //
     if (textHeight === 0 || textWidth === 0) {
-      console.log('Returning default value: 1');
+      // console.log('Returning default value: 1');
       this.inputValue = '';
       localStorage.setItem(INPUT_VALUE_ATTR, this.inputValue);
       return 20;
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     const maxFontHeight = Math.floor((this.fontSize * containerHeight) / textHeight);
     const maxFontWidth = Math.floor((this.fontSize * containerWidth) / textWidth);
-    console.log('maxHeight: ' + maxFontHeight + ', maxWidth: ' + maxFontWidth);
+    // console.log('maxHeight: ' + maxFontHeight + ', maxWidth: ' + maxFontWidth);
     return Math.min(maxFontHeight, maxFontWidth);
   }
 
