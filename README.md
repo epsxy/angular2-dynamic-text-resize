@@ -14,7 +14,14 @@ This application is a Angular 2 app with:
 
 The input text field value will be displayed in the output div. The slider allows to change the side of the output div. The reset button is for cleaning the localstorage content.
 
-Basically, text entered in the input will fit in the output container 'no matter what'. This container can be resized, the text can be very long, the app compute the optimal font size so that this text will fit in the container.
+Basically, text entered in the input will fit in the output container *no matter what*. This container can be resized, the text can be very long, the app compute the optimal font size so that this text will fit in the container.
+
+## Going further
+
+We could work on the following things to improve this app:
+- Improve testing in general. Some comportements are not tested (like slider's behavior). We should cover all cases.
+- Add a slider to change the height of the output div. Thus, we would be able to create a fully configurable container so that the text will be able to fit perfectly in both width/height.
+- Package our project *as a web component* so that we would be able to use easily it in other projects. 
 
 ## Prerequisites & dependencies
 
