@@ -10,7 +10,7 @@ import { INPUT_VALUE_ATTR, SLIDER_VALUE_ATTR } from 'src/model/const';
 
 export class AppComponent implements OnInit, OnDestroy {
   pageTitle = 'Angular 2 – Stretched Text Box';
-  fontSize = 45;
+  fontSize = 20;
   inputValue = '';
   sliderValue = 100;
   sliderOptions: Options = {
@@ -21,6 +21,9 @@ export class AppComponent implements OnInit, OnDestroy {
   private obs: MutationObserver;
 
   ngOnInit(): void {
+    /**
+     * Retrieve value from LocalStorage
+     */
     const inputStoredValue = localStorage.getItem(INPUT_VALUE_ATTR);
     const sliderStoredValue = localStorage.getItem(SLIDER_VALUE_ATTR);
     if (inputStoredValue != null) {
@@ -29,29 +32,41 @@ export class AppComponent implements OnInit, OnDestroy {
     if (sliderStoredValue != null && !isNaN(parseInt(sliderStoredValue, 10))) {
       this.sliderValue = parseInt(sliderStoredValue, 10);
     }
-    // --- DOM CHANGES MUTATION OBSERVER --- //
+
+    /**
+     * Watch for DOM Changes in Output Container
+     */
     this.obs = new MutationObserver((mutation) => {
-      // console.log(mutation);
       this.fontSize = this.computeMaxFont('.output-container');
     });
-    const node = document.querySelector('.output-container');
-    this.obs.observe(node, { characterData: true, attributes: true, childList: false, subtree: true });
+    const outputContainer = document.querySelector('.output-container');
+    this.obs.observe(outputContainer, {
+      characterData: true,
+      attributes: true,
+      childList: false,
+      subtree: true
+    });
   }
 
-  // --- RESIZE EVENT LISTENER --- //
+  /**
+   * Watch for Window:Resize event
+   */
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    // console.log('Window has been resized');
+  onResize(event): void {
     this.fontSize = this.computeMaxFont('.output-container');
   }
 
+  /**
+   * Disconnect Observer when instance is destroyed
+   */
   ngOnDestroy(): void {
     this.obs.disconnect();
   }
 
-  // TODO: Handle Corner cases where width = 0!
+  /**
+   * Compute new font size from a CSS selector
+   */
   computeMaxFont(selector: string): number {
-    // console.log('-- compute max font --');
     const outputContainer = document.querySelector(selector) as HTMLElement;
     const textContainer = document.querySelector(selector + ' > p ') as HTMLElement;
     const textWidth = textContainer.clientWidth;
@@ -59,33 +74,39 @@ export class AppComponent implements OnInit, OnDestroy {
     const containerWidth = outputContainer.clientWidth;
     const containerHeight = outputContainer.clientHeight;
 
-    // console.log('textWidth: ' + textWidth + ', textHeight: ' + textHeight);
-    // console.log('containerWidth: ' + containerWidth + ', containerHeight: ' + containerHeight);
-
-    // ----- FIXME INFINITE LOOP ----- //
+    /**
+     * Lower bound issue. When new font is 0px,
+     * we reset the view: inputValue='', sliderValue=100, fontSize=20
+     */
     if (textHeight === 0 || textWidth === 0) {
-      // console.log('Returning default value: 1');
       this.inputValue = '';
       localStorage.setItem(INPUT_VALUE_ATTR, this.inputValue);
       return 20;
     }
-    // -----------------------------------------
 
     const maxFontHeight = Math.floor((this.fontSize * containerHeight) / textHeight);
     const maxFontWidth = Math.floor((this.fontSize * containerWidth) / textWidth);
-    // console.log('maxHeight: ' + maxFontHeight + ', maxWidth: ' + maxFontWidth);
     return Math.min(maxFontHeight, maxFontWidth);
   }
 
-  // FORCE FONT SIZE RESET
-  computeStyle() {
+  /**
+   * @deprecated
+   * Was used to force Font Size update
+   */
+  computeStyle(): void {
     this.fontSize = this.computeMaxFont('.output-container');
   }
 
-  getOutputWidth() {
+  /**
+   * Bind sliderValue to Output Container width
+   */
+  getOutputWidth(): string {
     return this.sliderValue + '%';
   }
 
+  /**
+   * Reset view button callback
+   */
   reset(): void {
     this.inputValue = '';
     this.sliderValue = 100;
@@ -93,11 +114,17 @@ export class AppComponent implements OnInit, OnDestroy {
     localStorage.setItem(SLIDER_VALUE_ATTR, this.sliderValue.toString());
   }
 
+  /**
+   * Input change event callback
+   */
   onInputChange(event: any) {
     this.inputValue = event.target.value;
     localStorage.setItem(INPUT_VALUE_ATTR, this.inputValue);
   }
 
+  /**
+   * Watch slider changes and store new slide value in LocalStorage
+   */
   onSliderChange(event: any) {
     localStorage.setItem(SLIDER_VALUE_ATTR, this.sliderValue.toString());
   }
