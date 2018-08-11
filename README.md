@@ -60,6 +60,11 @@ Only `lint` and `unit test` will be executed.
 npm run docker:test
 ```
 
+## FIXME
+
+- End-to-end tests in Docker
+- End-to-end tests fails only in Travis. Output element height is 35 instead of 50. But they do not fail locally
+
 ## MISC
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.2.
