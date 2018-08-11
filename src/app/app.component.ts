@@ -77,6 +77,7 @@ export class AppComponent implements OnInit, OnDestroy {
     return Math.min(maxFontHeight, maxFontWidth);
   }
 
+  // FORCE FONT SIZE RESET
   computeStyle() {
     this.fontSize = this.computeMaxFont('.output-container');
   }

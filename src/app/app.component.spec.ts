@@ -89,6 +89,6 @@ describe('AppComponent', () => {
     expect(inputContainer.childElementCount).toEqual(1);
     expect(sliderContainer.childElementCount).toEqual(1);
     expect(outputContainer.childElementCount).toEqual(1);
-    expect(actionsContainer.childElementCount).toEqual(2);
+    expect(actionsContainer.childElementCount).toEqual(1);
   }));
 });
