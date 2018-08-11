@@ -79,7 +79,6 @@ npm run docker:test
 ### Integration
 
 - *End-to-end tests does not work in Docker.* Probably because of Headless Chrome browser.
-- *End-to-end tests does not work in Travis-CI.* Output element container height is thus always 35px instead of 50px. I do not know if it is related to Docker end-to-end tests issues.
 
 ## MISC
 
