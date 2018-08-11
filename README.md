@@ -6,58 +6,58 @@
 Docker
 npm >= 6.0
 @angular/cli >= 6.1.2
-````
-
-## Download and install
-
-- Clone this repo: `git clone ${THIS_REPO}`
-- Install dependencies: `cd ${THIS_REPO} && npm install`
-- Build docker image: `docker build --tag ${DOCKER_TAG} .`
-- Check docker image has been correctly installed: 
-```
-> docker images | grep ${DOCKER_TAG} | wc -l`
-> 1
 ```
 
-## Run on host
+## Quickstart
+
+You can simply start and run the project with:
 
 ```
-> cd ${REPO_PATH}
-> ng serve --open
+git clone https://github.com/epsxy/angular2-playground
+cd angular2-playground
+npm run quickstart
 ```
 
-## Run on docker
+The application will be available at `localhost:4242`
+
+NB: The previous command will:
+- Clone the repo
+- Install node dependencies
+- Build docker image
+- Run docker image
+- Run the angular app on host port 4242
+
+## Host install
+
+- Clone the repo: `git clone $_{REPO_URL}`
+- Install node dependencies: `npm install`
+- Run the project on your host: `npm run start`
+
+The application will be available at `localhost:4200`
+
+## Docker install
+
+- Clone the repo: `git clone $_{REPO_URL}`
+- Install node dependencies: `npm install`
+- Build docker container: `npm run docker:build`
+- Check docker install state: `npm run docker:check` should return 1
+- Run project in docker: `npm run docker:serve`
+
+The application will be available at `localhost:4242`
+
+## Host tests
+
+- Lint: `npm run lint`
+- Unit tests: `npm run test`
+- End to end tests: `npm run e2e`
+
+## Docker tests
+*End to end tests does not work inside a docker container at the moment. Probably because of an issue with Headless Chrome browser and `.sendKey` method.*
+
+Only `lint` and `unit test` will be executed.
 
 ```
-host> cd ${REPO_PATH}
-host> docker run -it --volume=$(pwd):/usr/src/app --publish 4200:4200 angular bash
-docker> ng serve --host=0.0.0.0
-```
-
-App will be available in host at `localhost:4200`.
-
-## Tests
-
-Tests currently does not work in the docker container. 
-
-### Unit tests
-
-Unit tests uses [Karma](https://karma-runner.github.io).
-
-```
-> cd ${REPO_PATH}
-> ng test --watch=false
-```
-
-Removing `--watch=false` will open a browser tab with details about the tests.
-
-### End-to-end tests
-
-End-to-end tests uses [Protractor](http://www.protractortest.org/).
-
-```
-> cd ${REPO_PATH}
-> ng e2e
+npm run docker:test
 ```
 
 ## MISC

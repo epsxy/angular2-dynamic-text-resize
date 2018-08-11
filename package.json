@@ -7,7 +7,17 @@
     "build": "ng build",
     "test": "ng test --watch=false",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "docker:build": "cross-conf-env docker build --tag $npm_package_config_imageName .",
+    "docker:check": "cross-conf-env docker images | grep $npm_package_config_imageName | wc -l",
+    "docker:run": "cross-conf-env docker run -it --volume=$(pwd):/usr/src/app --publish $npm_package_config_imagePort:4200 $npm_package_config_imageName bash",
+    "docker:test": "cross-conf-env docker run -it --volume=$(pwd):/usr/src/app --publish $npm_package_config_imagePort:4200 $npm_package_config_imageName npm run lint && npm run test",
+    "docker:serve": "cross-conf-env docker run -it --volume=$(pwd):/usr/src/app --publish $npm_package_config_imagePort:4200 $npm_package_config_imageName ng serve --host 0.0.0.0",
+    "quickstart": "npm install && npm run docker:build && npm run docker:serve"
+  },
+  "config": {
+    "imageName": "angular2-playground-docker",
+    "imagePort": "4242"
   },
   "private": true,
   "dependencies": {
@@ -34,6 +44,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.2.1",
+    "cross-conf-env": "^1.1.2",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~1.7.1",
@@ -41,6 +52,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.0",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "npm-run-all": "^4.1.3",
     "protractor": "^5.4.0",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
