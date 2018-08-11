@@ -3,7 +3,7 @@ import { protractor } from 'protractor/built/ptor';
 
 import { AppPage } from './app.po';
 
-describe('Tests for Angular2 Playground App', () => {
+describe('End-to-end Tests for Angular 2 – Dynamic Text Resize App', () => {
   let page: AppPage;
 
   beforeEach(() => {

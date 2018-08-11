@@ -1,5 +1,5 @@
 {
-  "name": "angular-ui-test-app",
+  "name": "angular2-dynamic-text-resize",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -16,7 +16,7 @@
     "quickstart": "npm install && npm run docker:build && npm run docker:serve"
   },
   "config": {
-    "imageName": "angular2-playground-docker",
+    "imageName": "angular2-dynamic-text-resize",
     "imagePort": "4242"
   },
   "private": true,

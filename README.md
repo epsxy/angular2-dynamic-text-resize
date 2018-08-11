@@ -1,4 +1,4 @@
-# Angular2-Playground ![Travis build](https://api.travis-ci.com/epsxy/angular2-playground.svg?branch=master)
+# Angular 2 – Dynamic Text Resize ![Travis build](https://travis-ci.org/epsxy/angular2-dynamic-text-resize.svg?branch=master)
 ## Demo
 
 ![Demo gif](img/demo.gif)
@@ -29,8 +29,8 @@ npm >= 6.0
 You can simply start and run the project with:
 
 ```
-git clone https://github.com/epsxy/angular2-playground
-cd angular2-playground
+git clone https://github.com/epsxy/angular2-dynamic-text-resize
+cd angular2-dynamic-text-resize
 npm run quickstart
 ```
 
@@ -51,7 +51,7 @@ NB: The previous command will:
 
 ### Host
 
-- Clone the repo: `git clone https://github.com/epsxy/angular2-playground`
+- Clone the repo: `git clone https://github.com/epsxy/angular2-dynamic-text-resize`
 - Install node dependencies: `npm install`
 - Run the project on your host: `npm run start`
 
@@ -59,7 +59,7 @@ The application will be available at `localhost:4200`
 
 ### Docker
 
-- Clone the repo: `git clone https://github.com/epsxy/angular2-playground`
+- Clone the repo: `git clone https://github.com/epsxy/angular2-dynamic-text-resize`
 - Install node dependencies: `npm install`
 - Build docker container: `npm run docker:build`
 - [Optional] Check docker if docker image has been successfully built: `npm run docker:check` should return 1
@@ -87,7 +87,7 @@ npm run docker:test
 
 ## Continuous Integration
 
-This project has got a [CI branch on Travis](https://travis-ci.com/epsxy/angular2-playground/).
+This project has got a [CI branch on Travis](https://travis-ci.org/epsxy/angular2-dynamic-text-resize).
 
 ## ISSUES
 

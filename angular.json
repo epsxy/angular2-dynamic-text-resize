@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-ui-test-app": {
+    "angular2-dynamic-text-resize": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-ui-test-app",
+            "outputPath": "dist/angular2-dynamic-text-resize",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-ui-test-app:build"
+            "browserTarget": "angular2-dynamic-text-resize:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-ui-test-app:build:production"
+              "browserTarget": "angular2-dynamic-text-resize:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-ui-test-app:build"
+            "browserTarget": "angular2-dynamic-text-resize:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "angular-ui-test-app-e2e": {
+    "angular2-dynamic-text-resize-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-ui-test-app:serve"
+            "devServerTarget": "angular2-dynamic-text-resize:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-ui-test-app:serve:production"
+              "devServerTarget": "angular2-dynamic-text-resize:serve:production"
             }
           }
         },
@@ -123,5 +123,5 @@
       }
     }
   },
-  "defaultProject": "angular-ui-test-app"
+  "defaultProject": "angular2-dynamic-text-resize"
 }
