@@ -3,7 +3,7 @@
   <h1>{{pageTitle}}</h1>
 </div>
 <div class="input-container">
-  <input (keyup)="onInputChange($event)" placeholder="Write something" [value]="inputValue">
+  <input class="text-input" (keyup)="onInputChange($event)" placeholder="Write something" [value]="inputValue">
 </div>
 <div class="slider-container">
   <ng5-slider [(value)]="sliderValue" [options]="sliderOptions" (valueChange)="onSliderChange($event)"></ng5-slider>
@@ -13,5 +13,5 @@
 </div>
 <div class="actions-container">
   <button (click)="computeStyle()" class="primary">Compute style</button>
-  <button (click)="reset()" class="danger">Reset</button>
+  <button (click)="reset()" class="danger reset">Reset</button>
 </div>
