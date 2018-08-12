@@ -100,8 +100,8 @@ export class AppComponent implements OnInit, OnDestroy {
   /**
    * Bind sliderValue to Output Container width
    */
-  getOutputWidth(): string {
-    return this.sliderValue + '%';
+  getOutputWidth(): number {
+    return this.sliderValue;
   }
 
   /**

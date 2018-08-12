@@ -40,7 +40,7 @@ describe('AppComponent', () => {
 
     fixture.componentInstance.sliderValue = 67;
 
-    expect(fixture.componentInstance.getOutputWidth()).toEqual('67%');
+    expect(fixture.componentInstance.getOutputWidth()).toEqual(67);
   }));
 
   it('should reset values', async(() => {

@@ -8,7 +8,7 @@
 <div class="slider-container">
   <ng5-slider [(value)]="sliderValue" [options]="sliderOptions" (valueChange)="onSliderChange($event)"></ng5-slider>
 </div>
-<div class="output" class="output-container" [style.width]="getOutputWidth()">
+<div class="output" class="output-container" [style.width.%]="getOutputWidth()">
   <p class="output-text-container" [style.font-size.px]="fontSize">{{inputValue}}</p>
 </div>
 <div class="actions-container">
