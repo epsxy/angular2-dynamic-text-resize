@@ -1,4 +1,4 @@
-import { $, browser, by, element } from 'protractor';
+import { $, browser, by, element, promise } from 'protractor';
 import { protractor } from 'protractor/built/ptor';
 
 export class AppPage {
@@ -6,43 +6,43 @@ export class AppPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
+  getParagraphText(): promise.Promise<string> {
     return element(by.css('app-root h1')).getText();
   }
 
-  getInputText() {
+  getInputText(): promise.Promise<string> {
     return element(by.className('text-input')).getAttribute('value');
   }
 
-  setInputText(text: string) {
+  setInputText(text: string): promise.Promise<void> {
     return $('.text-input').sendKeys(text);
   }
 
-  getOutputText() {
+  getOutputText(): promise.Promise<string> {
     return element(by.className('output-text-container')).getText();
   }
 
-  getOutputContainerClientWidth() {
+  getOutputContainerClientWidth(): promise.Promise<string> {
     return $('.output-container').getAttribute('clientWidth');
   }
 
-  getOutputContainerClientHeight() {
+  getOutputContainerClientHeight(): promise.Promise<string> {
     return $('.output-container').getAttribute('clientHeight');
   }
 
-  getOutputTextClientWidth() {
+  getOutputTextClientWidth(): promise.Promise<string> {
     return $('.output-text-container').getAttribute('clientWidth');
   }
 
-  getOutputTextClientHeight() {
+  getOutputTextClientHeight(): promise.Promise<string> {
     return $('.output-text-container').getAttribute('clientHeight');
   }
 
-  clickResetButton() {
+  clickResetButton(): promise.Promise<void> {
     return $('button.reset').click();
   }
 
-  checkThatTextFits() {
+  checkThatTextFits(): void {
     protractor.promise.all([
       this.getOutputContainerClientWidth(),
       this.getOutputContainerClientHeight(),

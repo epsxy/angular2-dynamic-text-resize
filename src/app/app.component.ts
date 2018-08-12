@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Options } from 'ng5-slider';
 import { INPUT_VALUE_ATTR, SLIDER_VALUE_ATTR } from 'src/model/const';
 
@@ -117,7 +117,7 @@ export class AppComponent implements OnInit, OnDestroy {
   /**
    * Input change event callback
    */
-  onInputChange(event: any) {
+  onInputChange(event: any): void {
     this.inputValue = event.target.value;
     localStorage.setItem(INPUT_VALUE_ATTR, this.inputValue);
   }
@@ -125,7 +125,7 @@ export class AppComponent implements OnInit, OnDestroy {
   /**
    * Watch slider changes and store new slide value in LocalStorage
    */
-  onSliderChange(event: any) {
+  onSliderChange(event: any): void {
     localStorage.setItem(SLIDER_VALUE_ATTR, this.sliderValue.toString());
   }
 }

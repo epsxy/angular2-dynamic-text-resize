@@ -1,5 +1,4 @@
-import { $, browser, ElementFinder } from 'protractor';
-import { protractor } from 'protractor/built/ptor';
+import { browser } from 'protractor';
 
 import { AppPage } from './app.po';
 

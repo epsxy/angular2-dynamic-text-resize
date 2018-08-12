@@ -5,7 +5,7 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { INPUT_VALUE_ATTR, SLIDER_VALUE_ATTR } from '../model/const';
 import { AppComponent } from './app.component';
 
-describe('AppComponent', () => {
+describe('Unit tests for Angular 2 – Dynamic Text Resize', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AppComponent],
